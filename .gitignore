@@ -1,1 +1,8 @@
+# Logs
+*.log
+# Cache
+.cache/
+.tmp/
 .env
+__pycache__/
+*.pyc

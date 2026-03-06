@@ -191,7 +191,7 @@ REASONING_PATTERNS = [
     # Pattern 1: "Let me think... <thinking>reasoning</thinking> Answer: X"
     re.compile(r"(?:<thinking>|Let me think|Thinking:|Reasoning:)(.+?)(?:</thinking>|Answer:|The answer is|\*\*Answer\*\*:)", re.DOTALL | re.IGNORECASE),
     # Pattern 2: Step-by-step markers
-    re.compile(r"(?:Step \d+[:.])?\s*(.+?)(?=(?:Step \d+[:.]|Therefore,|Thus,|So,|Answer:|The answer is)|$", re.DOTALL),
+    re.compile(r"(?:Step \d+[:.])?\s*(.+?)(?=(?:Step \d+[:.]|Therefore,|Thus,|So,|Answer:|The answer is)|$)", re.DOTALL),
     # Pattern 3: Generic split on "Answer:" or similar
     re.compile(r"(.+?)(?:\n\n(?:Answer|Result|Final|Conclusion)[:\s]+)(.+)", re.DOTALL),
 ]
