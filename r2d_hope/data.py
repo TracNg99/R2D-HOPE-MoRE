@@ -247,16 +247,20 @@ def make_pretrain_loader(
     tokenizer: PreTrainedTokenizerFast,
     seq_len: int = 512,
     batch_size: int = 16,
-    num_workers: int = 2,
+    num_workers: int = 0,
     dataset_name: str = "wikitext",
     dataset_config: str = "wikitext-103-raw-v1",
+    split: str = "train",
 ) -> DataLoader:
     ds = StreamingTextDataset(
         tokenizer, seq_len=seq_len,
         dataset_name=dataset_name, dataset_config=dataset_config,
+        split=split,
     )
+    # num_workers must be 0 for IterableDataset with HuggingFace streaming:
+    # forked workers inherit fsspec/Arrow state and deadlock.
     return DataLoader(ds, batch_size=batch_size, collate_fn=collate_fn,
-                      num_workers=num_workers, pin_memory=True)
+                      num_workers=0, pin_memory=True)
 
 
 def make_finetune_loader(
