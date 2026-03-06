@@ -248,6 +248,7 @@ class R2D_HOPE_MoRE(nn.Module):
         self,
         lr: float = 1e-4,
         weight_decay: float = 0.01,
+        betas: tuple = (0.9, 0.95),
     ) -> torch.optim.AdamW:
         """
         Separate parameter groups:
@@ -268,4 +269,4 @@ class R2D_HOPE_MoRE(nn.Module):
             {"params": base_params,     "lr": lr,       "weight_decay": weight_decay},
             {"params": no_decay_params, "lr": lr,       "weight_decay": 0.0},
             {"params": alpha_params,    "lr": lr * 10,  "weight_decay": 0.0},
-        ], betas=(0.9, 0.95), eps=1e-8)
+        ], betas=betas, eps=1e-8)
