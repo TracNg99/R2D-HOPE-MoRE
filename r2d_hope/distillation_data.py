@@ -44,6 +44,16 @@ import requests
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
 
 TEACHER_MODELS = {
+    # Free DeepSeek R1 distill models - BEST VALUE
+    "deepseek-r1-qwen-32b-free": "deepseek/deepseek-r1-distill-qwen-32b:free",
+    "deepseek-r1-llama-70b-free": "deepseek/deepseek-r1-distill-llama-70b:free",
+    
+    # Very cheap DeepSeek R1 distill models
+    "deepseek-r1-qwen-14b": "deepseek/deepseek-r1-distill-qwen-14b",  # $0.15/M
+    "deepseek-r1-llama-8b": "deepseek/deepseek-r1-distill-llama-8b",    # $0.04/M
+    "deepseek-r1-qwen-1.5b": "deepseek/deepseek-r1-distill-qwen-1.5b",  # $0.18/M
+    
+    # Original premium teachers (expensive)
     "kimi-k2.5": "moonshotai/kimi-k2.5",
     "qwen-122b": "qwen/qwen3.5-122b-a10b",
     "qwen-397b": "qwen/qwen3.5-397b-a17b",
@@ -137,6 +147,7 @@ class OpenRouterClient:
             "messages": messages,
             "temperature": temperature,
             "max_tokens": max_tokens,
+            "enforce_distillable_text": True,  # Required for compliance with model licenses
         }
         
         for attempt in range(retries):
@@ -485,7 +496,7 @@ if __name__ == "__main__":
     
     samples = distiller.generate_dataset(
         prompts=prompts,
-        teachers=[TEACHER_MODELS["qwen-122b"]],
+        teachers=[TEACHER_MODELS["deepseek-r1-qwen-32b-free"]],  # FREE - best value
         output_path="demo_distill.jsonl",
         n_samples_per_prompt=1,
     )
