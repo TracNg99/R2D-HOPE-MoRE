@@ -21,10 +21,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .config import R2DConfig
-from .embeddings import FactorizedEmbedding
-from .core import R2D_HOPE_Core
-from .noise_scheduler import CosineNoiseScheduler
+from r2d_hope.config import R2DConfig
+from r2d_hope.embeddings import FactorizedEmbedding
+from r2d_hope.core import R2D_HOPE_Core
+from r2d_hope.noise_scheduler import CosineNoiseScheduler
 
 
 class TimeEmbedding(nn.Module):

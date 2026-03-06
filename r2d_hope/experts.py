@@ -11,8 +11,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .config import R2DConfig
-from .embeddings import RotaryEmbedding
+from r2d_hope.config import R2DConfig
+from r2d_hope.embeddings import RotaryEmbedding
 
 
 # ---------------------------------------------------------------------------

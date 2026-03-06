@@ -15,9 +15,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.checkpoint import checkpoint
 
-from .config import R2DConfig
-from .routing import SparseRouter
-from .experts import (
+from r2d_hope.config import R2DConfig
+from r2d_hope.routing import SparseRouter
+from r2d_hope.experts import (
     LocalPatternExpert,
     LogicalReasoningExpert,
     MemoryConsolidator,

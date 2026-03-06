@@ -29,8 +29,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
-from .trainer import TrainConfig, cosine_lr_with_warmup, save_checkpoint, load_latest_checkpoint
-from .model import R2D_HOPE_MoRE
+from r2d_hope.trainer import TrainConfig, cosine_lr_with_warmup, save_checkpoint, load_latest_checkpoint
+from r2d_hope.model import R2D_HOPE_MoRE
 
 
 # ---------------------------------------------------------------------------
@@ -261,7 +261,7 @@ class DistillationTrainer:
         data_path = data_path or self.distill_cfg.data_path
         
         # Build tokenizer from saved path
-        from .data import build_or_load_tokenizer
+        from r2d_hope.data import build_or_load_tokenizer
         tokenizer = build_or_load_tokenizer(
             tokenizer_dir=self.train_cfg.tokenizer_dir,
             vocab_size=self.model.config.vocab_size,
@@ -424,7 +424,7 @@ def generate_and_train(
     """
     End-to-end: Generate traces from OpenRouter, then distill.
     """
-    from .distillation_data import OpenRouterDistiller, TEACHER_MODELS
+    from r2d_hope.distillation_data import OpenRouterDistiller, TEACHER_MODELS
     
     os.makedirs(output_dir, exist_ok=True)
     data_path = os.path.join(output_dir, "distillation_data.jsonl")
